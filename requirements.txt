@@ -1,0 +1,6 @@
+discord
+discord.py
+Pillow
+requests
+Pyrebase4
+discord-py-interactions
