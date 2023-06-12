@@ -100,9 +100,6 @@ async def on_ready():
 async def on_guild_join(guild):
     db.child("img").update({guild.id:4})
 
-@bot.tree.command(name="helo")
-async def _hello(interaction:discord.Interaction):
-    await interaction.response.send_message("Hello!")
 
 @bot.tree.command(name="movie")
 async def _movie(interaction:discord.Interaction,*,query:str,page:int=0):
