@@ -102,13 +102,13 @@ async def on_guild_join(guild):
 
 
 @bot.tree.command(name="movie")
-async def _movie(interaction:discord.Interaction,*,query:str,page:int=0):
-    await process(interaction,query,movie_url,None,page,None)
+async def _movie(interaction:discord.Interaction,*,query:str,page:int=1):
+    await process(interaction,query,movie_url,None,page-1,None)
 
 
 @bot.tree.command(name="show")
-async def _show(interaction:discord.Interaction,*,query:str,page:int=0):
-    await process(interaction,query,tv_url,elements2,page,None)
+async def _show(interaction:discord.Interaction,*,query:str,page:int=1):
+    await process(interaction,query,tv_url,elements2,page-1,None)
 
 
 
