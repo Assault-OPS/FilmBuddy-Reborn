@@ -82,18 +82,26 @@ async def on_ready():
     except Exception as e:
         print(f"[LOG] Couldn't perform sync due to following\n{e}")
 
+<<<<<<< HEAD
 @bot.tree.command(name="helo")
 async def _hello(interaction:discord.Interaction):
     await interaction.response.send_message("Hello!")
+=======
+
+@bot.event
+async def on_guild_join(guild):
+    db.child("img").update({guild.id:4})
+
+>>>>>>> 143f99330843211f90536310af114e9e99f41458
 
 @bot.tree.command(name="movie")
-async def _movie(interaction:discord.Interaction,*,query:str,page:int=0):
-    await process(interaction,query,movie_url,None,page,None)
+async def _movie(interaction:discord.Interaction,*,query:str,page:int=1):
+    await process(interaction,query,movie_url,None,page-1,None)
 
 
 @bot.tree.command(name="show")
-async def _show(interaction:discord.Interaction,*,query:str,page:int=0):
-    await process(interaction,query,tv_url,elements2,page,None)
+async def _show(interaction:discord.Interaction,*,query:str,page:int=1):
+    await process(interaction,query,tv_url,elements2,page-1,None)
 
 
 

@@ -10,7 +10,7 @@ class Image_Data:
         self.title = title
         self.year= year
         self.description = description
-        self.rating = float(f"{rating:.1f}")
+        self.rating = round(rating,1)
         self.link = link
         self.genre = genre
         self.language = language
