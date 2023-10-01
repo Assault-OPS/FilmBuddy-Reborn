@@ -23,17 +23,6 @@ async def lang_gen(code):
         data = json.load(lang)
     if data.get(code) is not None: return data.get(code).get("name")
 
-
-# Firebase credentials
-firebaseConfig = {
-#Classified information
-  }
-
-# Setting up Firebase
-firebase = pyrebase.initialize_app(firebaseConfig)
-db = firebase.database()
-
-
 # Setting up basic keys
 with open("credential.json",'r') as f:
     creds = json.load(f)
@@ -60,9 +49,7 @@ async def process(interaction,query,url,elem,page,guild_id):
     mov = await get_data(url,"%20".join(query.split()))
     mov = mov.get("results")
     if len(mov) != 0:
-        if db.child("img").child(guild_id).get().val() is None:
-            db.child("img").update({guild_id:2})
-        datas = [db.child("img").child(guild_id).get().val()]
+        datas = [3]
         for i in elem:
             if all((i=="poster_path",mov[page].get(i) != None)):
                 datas.append(p_path+mov[page].get(i))
@@ -94,11 +81,6 @@ async def on_ready():
         print("[LOG] commands synced")
     except Exception as e:
         print(f"[LOG] Couldn't perform sync due to following\n{e}")
-
-
-@bot.event
-async def on_guild_join(guild):
-    db.child("img").update({guild.id:4})
 
 @bot.tree.command(name="helo")
 async def _hello(interaction:discord.Interaction):
